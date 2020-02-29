@@ -13,7 +13,7 @@ prependJs:
 contentType: guide
 ---
 
-<p className="txt-l">With Mapbox Studio, you can upload and manage custom data to be added to a map.</p>
+<p className="txt-l">使用Mapbox Studio，您可以上传并管理添加到地图的自定义数据。.</p>
 
 {{
   <YouAreHere
@@ -21,17 +21,17 @@ contentType: guide
   />
 }}
 
-## Types of uploads
+##可上传数据类型
 
-[**Datasets**](https://www.mapbox.com/help/define-dataset) and [**tilesets**](https://www.mapbox.com/help/define-tileset) are two different formats you can create when uploading custom data to your Mapbox account. If you want to upload data and edit it before adding to a map, upload as a **dataset**. If you want to upload data to add directly to a map, upload as a **tileset**.
+将自定义数据上传到Mapbox帐户时可以选择[**Datasets**](https://www.mapbox.com/help/define-dataset) 和 [**tilesets**](https://www.mapbox.com/help/define-tileset) 两种格式。如果要上传数据并在添加到地图之前对其进行编辑，请作为**Datasets**进行上传。如果您要上传数据以直接添加到地图中，请上传**tilesets**格式。
 
 {{<Note>}}
-If you are uploading raster data, you must upload as a tileset.
+如果要上传栅格数据，则必须作为切片数据进行上传。
 {{</Note>}}
 
-### Uploading data you can edit (datasets)
+###上传您可以编辑的数据（datasets）
 
-When you upload your data as a **dataset**, feature geometries (points, lines, and polygons) and properties (attributes) can be edited, added, or removed in the Mapbox Studio [dataset editor](https://www.mapbox.com/studio/datasets/). Once you have finished editing your dataset, you will need to save it and export it as a tileset to add it to a style.
+当您上传**dataset**时，可以在Mapbox Studio Studio [dataset 编辑器](https://www.mapbox.com/studio/datasets/)对数据进行编辑，添加或删除要素几何（点，线和面）和属性（属性）。完成编辑后，需要将其保存并导出为图块集以将其添加到样式中。
 
 {{
   <Browser>
@@ -39,9 +39,9 @@ When you upload your data as a **dataset**, feature geometries (points, lines, a
   </Browser>
 }}
 
-### Uploading data to add to a map (tilesets)
+### 上传数据到地图(tilesets)
 
-**Tilesets** are lightweight collections of vector or raster data that are optimized for rendering and *are not editable* but can be styled in the Mapbox Studio style editor. When you upload vector data as a tileset, it is simplified and cut up into vector tiles that can be used directly in your style. Once data is converted to a tileset, it is no longer editable.
+**Tilesets**是矢量或栅格数据的轻量级集合，已针对渲染进行了优化，并且不可编辑，但可以在Mapbox Studio样式编辑器中设置样式。当您将矢量数据作为图块集上传时，它会被简化并切成可直接用于您的样式的矢量图块。数据转换为图块集后，将无法再对其进行编辑。
 
 {{
   <Browser>
@@ -52,53 +52,52 @@ When you upload your data as a **dataset**, feature geometries (points, lines, a
   </Browser>
 }}
 
-## Preparing your data for upload
+## 准备要上传的数据
 
-Mapbox Studio allows you to upload your own custom data to use in your map styles. You can upload your files on the [Tilesets page](/studio-manual/reference/tilesets/#upload-file).
+Mapbox Studio 允许您上传用于地图样式的个人自定义数据。您可以在 [Tilesets page](/studio-manual/reference/tilesets/#upload-file)上传文件。
 
-For a smooth upload process, it helps to make sure that:
+为了顺利进行上传，它需要确保符合以下条件：
 
-- Geospatial data has been projected to [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator) (EPSG:3857).
-- [GeoJSON](https://www.mapbox.com/help/define-geojson/) files have been validated for proper syntax.
-- Unnecessary properties have been removed.
+-地理空间数据已投影到 [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator) (EPSG:3857).
+- [GeoJSON](https://www.mapbox.com/help/define-geojson/) 文件语法验证为正确。
+- 不必要的属性已被删除。
 
-### Uploading using the Uploads API
+### 使用API上传
 
-Or, you can use the [Mapbox Uploads API](https://www.mapbox.com/api-documentation/maps/#uploads) to upload an accepted file that is transformed into a tileset. With the Uploads API, Mapbox provides you with a temporary S3 bucket to stage uploads that can be started and monitored.
+您也可以使用 [Mapbox Uploads API](https://www.mapbox.com/api-documentation/maps/#uploads) 上传如何条件的文件，该文件会转换为 tileset。借助 Uploads API，Mapbox 将为您提供了一个能被启动和监视临时S3存储桶。
 
-### Accepted file types and transfer limits
+### 可接受的文件类型和传输限制
 
-The accepted file types <span class='none inline-ml'>and transfer limits</span> for dataset and tileset uploads include:
-
+数据集和图块集上传的可接受文件类型和传输限制包括：
 |File type|Datasets|Tilesets|Transfer limits
 |---|:---:|:---:|:---:|
-| [CSV](https://www.mapbox.com/help/define-csv) | {{<Icon name='check' inline={true} />}} | {{<Icon name='check' inline={true} />}} | 5 MB for datasets, 1 GB for tilesets |
-| [GeoJSON](https://www.mapbox.com/help/define-geojson) | {{<Icon name='check' inline={true} />}} | {{<Icon name='check' inline={true} />}}</span> | 5 MB for datasets, 1 GB for tilesets |
+| [CSV](https://www.mapbox.com/help/define-csv) | {{<Icon name='check' inline={true} />}} | {{<Icon name='check' inline={true} />}} |  datasets 为 5 MB, tilesets 为 1 GB |
+| [GeoJSON](https://www.mapbox.com/help/define-geojson) | {{<Icon name='check' inline={true} />}} | {{<Icon name='check' inline={true} />}}</span> |  datasets 为 5 MB, tilesets 为 1 GB |
 | [MBTiles](https://www.mapbox.com/help/define-mbtiles) | | {{<Icon name='check' inline={true} />}} | 25 GB
-| [KML](https://www.mapbox.com/help/define-kml) | | {{<Icon name='check' inline={true} />}} | 260 MB with 15 layers or fewer |
+| [KML](https://www.mapbox.com/help/define-kml) | | {{<Icon name='check' inline={true} />}} | 15 层之内不超过 260MB
 | [GPX](https://www.mapbox.com/help/define-gpx) | | {{<Icon name='check' inline={true} />}} | 260 MB |
-| [Shapefile](https://www.mapbox.com/help/define-shapefile) | | {{<Icon name='check' inline={true} />}} | 260 MB (combined uncompressed size of `.shp` and `.dbf` files) You must upload shapefiles as a compressed `.zip` file. |
+| [Shapefile](https://www.mapbox.com/help/define-shapefile) | | {{<Icon name='check' inline={true} />}} |  `.shp` 和 `.dbf` 文件未压缩的情况下不超过260 MB ，且您必须将 shapefile 作为压缩.zip文件上传。 |
 | [GeoTIFF](https://www.mapbox.com/help/define-tiff) | | {{<Icon name='check' inline={true} />}} | 10 GB |
 
-If your file size exceeds these limits or if you run into errors, see our [troubleshooting guide](https://www.mapbox.com/help/uploads/).
+如果您的文件大小超过了这些限制，或者遇到错误，请参阅我们的 [故障排除指南](https://www.mapbox.com/help/uploads/).
 
 {{<Note>}}
-Multiple files can be uploaded to the same dataset without limit &mdash; they need to be loaded 5 MB at a time. The size of a dataset is unlimited, but the Mapbox Studio dataset editor can only display datasets of 20 MB or smaller. These datasets can still be downloaded from Mapbox Studio and accessed through the [Datasets API](https://www.mapbox.com/api-documentation/maps/#datasets).
+可以无限制地将多个文件上传到同一数据——每次需要加载5 MB。&mdash; 的大小不受限制，但是Mapbox Studio数据集编辑器只能显示20 MB及以下的数据集。这些数据集仍然可以从Mapbox Studio下载并通过 [Datasets API](https://www.mapbox.com/api-documentation/maps/#datasets) 访问。
 {{</Note>}}
 
-### Zoom levels and simplification
+###缩放级别和简化
 
-When an upload is completed in Mapbox Studio, it is rendered into a [tileset](https://www.mapbox.com/help/define-tileset/). After the tileset is created, your data is sometimes simplified at lower zoom levels to reduce the complexity of the data and make sure that each tile is below a certain size. Mapbox Studio does this to make your map load faster in areas where details wouldn't be normally noticed.
+在 Mapbox Studio 完成上传后，它被渲染成一个 [tileset](https://www.mapbox.com/help/define-tileset/)。创建图块集后，偶尔会以较低的缩放级别简化数据，以降低数据的复杂性，并确保每个图块都小于一定大小。Mapbox Studio这样做是为了使您的地图在不关注细节的地方更快的加载。
 
-Uploaded tilesets are also given a zoom extent. This zoom extent is the total zoom range in which features are visible, which is listed on the [tileset information page](/studio-manual/reference/tilesets/#tileset-information-page). If you need your tileset to be visible at a different zoom extent, you can [adjust this manually](https://www.mapbox.com/help/adjust-tileset-zoom-extent/).
+上传的图块集也具有缩放范围。此缩放范围是可视要素的总缩放范围，该范围在 [tileset 信息页](/studio-manual/reference/tilesets/#tileset-information-page) 上列出。如果您需要在不同的缩放范围内看到图块集，可以 [手动进行调整](https://www.mapbox.com/help/adjust-tileset-zoom-extent/).
 
 {{<Note>}}
-Zoom extents for vector tiles affect the zoom levels at which tiles are _generated_. This is different from the zoom levels at which the data is _visible_: Vector tilesets can be styled up to zoom level 22, and zoom levels higher than the zoom extent will be styled using the highest zoom tiles available.
+矢量图块的缩放范围会影响生成图块的缩放级别。这是因为数据的缩放级别不同而导致的：矢量tilesets可样式多达22级缩放级别，对于高于缩放范围的缩放级别将使用可用的最大缩放图块设置样式。
 {{</Note>}}
 
-## More about tilesets
+## 有关tilesets的更多信息
 
-See the Tilesets section for more information on how to upload and manage tilesets in Mapbox Studio.
+有关如何在Mapbox Studio中上传和管理图块的更多信息，请参见Tileset。
 
 {{
   <a href='/studio-manual/reference/tilesets/' className="unprose txt-bold link">
@@ -106,9 +105,9 @@ See the Tilesets section for more information on how to upload and manage tilese
   </a>
 }}
 
-## More about datasets
+## 有关 datasets 的更多信息
 
-See the Datasets section for more information on how to upload, manage, and edit datasets in Mapbox Studio.
+有关如何在 Mapbox Studio 中上传、管理和编辑数据集的更多信息，请参见“Datasets”部分。
 
 {{
   <a href='/studio-manual/reference/datasets' className="unprose txt-bold link">
@@ -116,9 +115,9 @@ See the Datasets section for more information on how to upload, manage, and edit
   </a>
 }}
 
-## Troubleshooting common upload errors
+## 解决常见的上传错误
 
-Having trouble with uploads? Try our troubleshooting guides.
+上传有问题吗？试试我们的故障排除指南。
 
 {{
   <a href='/studio-manual/help/#troubleshooting' className="unprose txt-bold link">
